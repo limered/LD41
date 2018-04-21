@@ -1,0 +1,36 @@
+﻿using System;
+using System.Linq;
+using SystemBase;
+using Systems.Driving;
+using UniRx;
+using UniRx.Triggers;
+using UnityEngine;
+using Utils.Math;
+
+namespace Systems.Interaction
+{
+    [GameSystem(typeof(CarSystem))]
+    public class WallSystem : GameSystem<CarComponent, WallComponent>
+    {
+        private CarComponent _car;
+        public override void Register(WallComponent component)
+        {
+            component.OnCollisionEnter2DAsObservable()
+                .Subscribe(CarCollision)
+                .AddTo(component);
+        }
+
+        private void CarCollision(Collision2D collision2D)
+        {
+            var center = collision2D.contacts.Select(c => c.point).Aggregate((one, two) => one + two);
+            center = new Vector2(center.x/collision2D.contacts.Length, center.y / collision2D.contacts.Length);
+            var dir = _car.transform.position.DirectionTo(center);
+            _car.Velocity = new Vector2(-dir.x * 25, -dir.y * 25);
+        }
+
+        public override void Register(CarComponent component)
+        {
+            _car = component;
+        }
+    }
+}

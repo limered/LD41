@@ -32,7 +32,7 @@ namespace Systems.Driving
         private void Animate(CarComponent carComponent)
         {
             var futureVelocity = carComponent.Velocity + carComponent.Acceleration * Time.fixedDeltaTime;
-            var speed = futureVelocity.magnitude;
+            var speed = carComponent.Velocity.magnitude;
             carComponent.SteerAngle *= speed / _config.MaxSpeed;
             if (speed < _config.MaxSpeed)
             {
