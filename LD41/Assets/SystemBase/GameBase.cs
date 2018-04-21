@@ -20,6 +20,8 @@ namespace SystemBase
             MapAllSystemsComponents();
 
             DebugMainFrameCallback.ObserveOnMainThread().Subscribe(OnDebugCallbackCalled);
+
+            DontDestroyOnLoad(this);
         }
 
         public void RegisterComponent(IGameComponent component)
