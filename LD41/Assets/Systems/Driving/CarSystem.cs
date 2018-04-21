@@ -1,5 +1,4 @@
-﻿using System;
-using SystemBase;
+﻿using SystemBase;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -85,7 +84,6 @@ namespace Systems.Driving
                 steerInput -= 1;
             }
             carComponent.SteerAngle = steerInput * _config.SteerFactor;
-            
         }
 
 
@@ -93,8 +91,6 @@ namespace Systems.Driving
         {
             _config = component;
         }
-
-        private enum SteerDir { None, Left, Right }
     }
     
 }
