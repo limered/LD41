@@ -10,25 +10,10 @@
     {
         public void Enter(GameControllerSystem context)
         {
-            
         }
 
         public void Exit()
         {
-            
-        }
-    }
-
-    public class WaitForFinishState : IGameState
-    {
-        public void Enter(GameControllerSystem context)
-        {
-            
-        }
-
-        public void Exit()
-        {
-            
         }
     }
 }

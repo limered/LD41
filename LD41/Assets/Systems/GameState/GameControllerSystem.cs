@@ -34,24 +34,64 @@ namespace Systems.GameState
             _states.Add(new TaskState
             {
                 TaskName = "one",
-                TaskGenerators = new ITaskGenerator[] { new AdditionAbstractTaskGenerator(0,10), new SubtractionAbstractTaskGenerator(1,10), }
+                TaskGenerators = new ITaskGenerator[]
+                {
+                    new AdditionAbstractTaskGenerator(0,10),
+                    new SubtractionAbstractTaskGenerator(1,10),
+                }
             });
             _states.Add(new TaskState
             {
                 TaskName = "two",
-                TaskGenerators = new ITaskGenerator[] { new AdditionAbstractTaskGenerator(10,100), new SubtractionAbstractTaskGenerator(10,100), },
+                TaskGenerators = new ITaskGenerator[]
+                {
+                    new AdditionAbstractTaskGenerator(10,100),
+                    new SubtractionAbstractTaskGenerator(10,100),
+                },
             });
-            //_states.Add(new WaitForFinishState());
-            //_states.Add(new TaskState
-            //{
-            //    TaskName = "one",
-            //    TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 5), new DivisionAbstractTaskGeneratorImpl(1, 5), },
-            //});
-            //_states.Add(new TaskState
-            //{
-            //    TaskName = "two",
-            //    TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 10), new DivisionAbstractTaskGeneratorImpl(1,10), },
-            //});
+            _states.Add(new WaitForFinishState());
+            _states.Add(new TaskState
+            {
+                TaskName = "one",
+                TaskGenerators = new ITaskGenerator[]
+                {
+                    new MultiplyTaskGeneratorImpl(0, 5),
+                    new DivisionAbstractTaskGeneratorImpl(1, 5),
+                },
+            });
+            _states.Add(new TaskState
+            {
+                TaskName = "two",
+                TaskGenerators = new ITaskGenerator[]
+                {
+                    new MultiplyTaskGeneratorImpl(0, 10),
+                    new DivisionAbstractTaskGeneratorImpl(1, 10),
+                },
+            });
+            _states.Add(new WaitForFinishState());
+            _states.Add(new TaskState
+            {
+                TaskName = "one",
+                TaskGenerators = new ITaskGenerator[] {
+                    new MultiplyTaskGeneratorImpl(0, 5),
+                    new DivisionAbstractTaskGeneratorImpl(1, 5),
+                    new AdditionAbstractTaskGenerator(0,10),
+                    new SubtractionAbstractTaskGenerator(1,10),
+                },
+            });
+            _states.Add(new TaskState
+            {
+                TaskName = "two",
+                TaskGenerators = new ITaskGenerator[]
+                {
+                    new MultiplyTaskGeneratorImpl(1, 15),
+                    new DivisionAbstractTaskGeneratorImpl(1, 5),
+                    new AdditionAbstractTaskGenerator(10, 100),
+                    new SubtractionAbstractTaskGenerator(50, 100),
+                },
+            });
+            _states.Add(new WaitForFinishState());
+
         }
 
         public void NextState()
