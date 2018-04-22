@@ -1,7 +1,7 @@
 using SystemBase;
 using UnityEngine;
 
-namespace Systems.Interaction.Booster
+namespace Systems.Interaction.TaskFinish
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public class BoostComponent : GameComponent

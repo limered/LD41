@@ -1,11 +1,11 @@
 ﻿using SystemBase;
 using UnityEngine;
 
-namespace Systems.Interaction.Obstacles
+namespace Systems.Interaction.TaskFinish
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public class ObstacleComponent : GameComponent
     {
-        public string ParentName { get; set; }
+        public string Name { get; set; }
     }
 }
