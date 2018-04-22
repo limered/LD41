@@ -22,7 +22,7 @@ namespace Systems.Camera
         private void UpdateCamera(CameraComponent cameraComponent)
         {
             cameraComponent.transform.position = Vector3.Lerp(cameraComponent.transform.position, cameraComponent.Helper.transform.position, cameraComponent.PositionLerpFactor);
-            cameraComponent.transform.rotation = Quaternion.Slerp(cameraComponent.transform.rotation, cameraComponent.Helper.transform.rotation, cameraComponent.RotationLerpFactor);
+            cameraComponent.transform.up = Vector3.Lerp(cameraComponent.transform.up, cameraComponent.Car.ForwardVector, cameraComponent.RotationLerpFactor);
         }
     }
 }
