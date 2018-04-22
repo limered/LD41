@@ -31,18 +31,4 @@
             
         }
     }
-
-
-    public class TaskState : IGameState
-    {
-        public void Enter(GameControllerSystem context)
-        {
-            
-        }
-
-        public void Exit()
-        {
-            
-        }
-    }
 }

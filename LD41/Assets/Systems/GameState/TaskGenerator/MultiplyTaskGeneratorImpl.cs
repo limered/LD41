@@ -2,16 +2,17 @@ using UnityEngine;
 
 namespace Systems.GameState.TaskGenerator
 {
-    public class SubtractionAbstractTaskGenerator : AbstractTaskGenerator
+    public class MultiplyTaskGeneratorImpl : AbstractTaskGenerator
     {
         private readonly int _min;
         private readonly int _max;
 
-        public SubtractionAbstractTaskGenerator(int min, int max)
+        public MultiplyTaskGeneratorImpl(int min, int max)
         {
             _min = min;
             _max = max;
         }
+
         public override Task Generate()
         {
             var task = new Task
@@ -19,8 +20,8 @@ namespace Systems.GameState.TaskGenerator
                 FirstNumber = Random.Range(_min, _max),
                 SecondNumber = Random.Range(_min, _max)
             };
-            task.Result = task.FirstNumber - task.SecondNumber;
-            task.Operation = "-";
+            task.Result = task.FirstNumber * task.SecondNumber;
+            task.Operation = "x";
 
             GenerateWrongs(task);
 

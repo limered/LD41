@@ -4,6 +4,6 @@ namespace Systems.GameState.TaskGenerator
 {
     public interface ITaskGenerator
     {
-        Task Generate(int min, int max);
+        Task Generate();
     }
 }

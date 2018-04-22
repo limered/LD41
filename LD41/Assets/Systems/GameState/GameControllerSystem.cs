@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SystemBase;
 using Systems.GameState.States;
+using Systems.GameState.TaskGenerator;
+using UniRx;
 
 namespace Systems.GameState
 {
@@ -16,12 +19,35 @@ namespace Systems.GameState
             _config = component;
 
             SetupStates();
+
+            _states[_currentStateP].Enter(this);
         }
 
         private void SetupStates()
         {
             _states = new List<IGameState>();
-            _states.Add(new SplashScreenState());
+            //_states.Add(new SplashScreenState());
+            _states.Add(new TaskState
+            {
+                TaskName = "one",
+                TaskGenerators = new ITaskGenerator[] { new AdditionAbstractTaskGenerator(0,10), new SubtractionAbstractTaskGenerator(1,10), }
+            });
+            _states.Add(new TaskState
+            {
+                TaskName = "two",
+                TaskGenerators = new ITaskGenerator[] { new AdditionAbstractTaskGenerator(10,100), new SubtractionAbstractTaskGenerator(10,100), },
+            });
+            //_states.Add(new WaitForFinishState());
+            _states.Add(new TaskState
+            {
+                TaskName = "one",
+                TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 5), new DivisionAbstractTaskGeneratorImpl(1, 5), },
+            });
+            _states.Add(new TaskState
+            {
+                TaskName = "two",
+                TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 10), new DivisionAbstractTaskGeneratorImpl(1,10), },
+            });
         }
 
         public void NextState()
@@ -29,7 +55,7 @@ namespace Systems.GameState
             if (_states[_currentStateP] == null) return;
 
             _states[_currentStateP].Exit();
-            _currentStateP = _currentStateP >= _states.Count ? 0 : _currentStateP+1;
+            _currentStateP = (_currentStateP + 1) % _states.Count;
             _states[_currentStateP].Enter(this);
         }
     }

@@ -4,7 +4,7 @@ namespace Systems.GameState.TaskGenerator
 {
     public abstract class AbstractTaskGenerator : ITaskGenerator
     {
-        public abstract Task Generate(int min, int max);
+        public abstract Task Generate();
 
         protected static void GenerateWrongs(Task task)
         {
