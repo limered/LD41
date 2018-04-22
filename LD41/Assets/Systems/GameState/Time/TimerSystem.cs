@@ -50,18 +50,10 @@ namespace Systems.GameState.Time
         {
             var minutes = (int)component.Time / 60;
             var seconds = (int)component.Time % 60;
-            var millies = ((component.Time - seconds) * 1000) % 1000;
+            var millies = ((component.Time - seconds) * 100) % 100;
 
             var text = component.GetComponent<Text>();
-            text.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, millies);
+            text.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, millies);
         }
-    }
-
-    public class MessageTimerStop
-    {
-    }
-
-    public class MessageTimerStart
-    {
     }
 }

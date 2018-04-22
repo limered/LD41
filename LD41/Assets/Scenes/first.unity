@@ -319,14 +319,14 @@ RectTransform:
   m_GameObject: {fileID: 311092359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 934987987}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &311092361
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 300
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 300
@@ -422,7 +422,7 @@ Prefab:
     - target: {fileID: 114187532168181934, guid: 7e5f4ed5068bad1438697162839fa6c4,
         type: 2}
       propertyPath: SteerFactor
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114792898406248276, guid: 7e5f4ed5068bad1438697162839fa6c4, type: 2}
