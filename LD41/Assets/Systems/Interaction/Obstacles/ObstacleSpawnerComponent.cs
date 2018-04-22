@@ -1,6 +1,6 @@
 ﻿using SystemBase;
 
-namespace Systems.Interaction
+namespace Systems.Interaction.Obstacles
 {
     public class ObstacleSpawnerComponent : GameComponent
     {

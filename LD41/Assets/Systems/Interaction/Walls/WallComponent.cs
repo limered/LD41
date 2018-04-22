@@ -1,6 +1,6 @@
 using SystemBase;
 
-namespace Systems.Interaction
+namespace Systems.Interaction.Walls
 {
     public class WallComponent : GameComponent
     {

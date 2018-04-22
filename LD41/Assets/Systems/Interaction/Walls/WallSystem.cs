@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using SystemBase;
 using Systems.Driving;
 using UniRx;
@@ -7,7 +6,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using Utils.Math;
 
-namespace Systems.Interaction
+namespace Systems.Interaction.Walls
 {
     [GameSystem(typeof(CarSystem))]
     public class WallSystem : GameSystem<CarComponent, WallComponent>
