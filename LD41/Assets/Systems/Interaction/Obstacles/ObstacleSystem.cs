@@ -37,8 +37,8 @@ namespace Systems.Interaction.Obstacles
         {
             _config = component;
 
-            //Observable.Interval(TimeSpan.FromSeconds(10))
-            //    .Subscribe(l => MessageBroker.Default.Publish(new MessageSpawnOpstacle {Name = "test"}));
+            Observable.Interval(TimeSpan.FromSeconds(10))
+                .Subscribe(l => MessageBroker.Default.Publish(new MessageSpawnOpstacle("test")));
         }
         public override void Register(ObstacleSpawnerComponent component)
         {
