@@ -30,7 +30,7 @@ namespace Systems.GameState
         private void SetupStates()
         {
             _states = new List<IGameState>();
-            //_states.Add(new SplashScreenState());
+            _states.Add(new SplashScreenState());
             _states.Add(new TaskState
             {
                 TaskName = "one",
