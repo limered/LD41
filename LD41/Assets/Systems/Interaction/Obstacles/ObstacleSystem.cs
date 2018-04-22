@@ -25,8 +25,8 @@ namespace Systems.Interaction.Obstacles
                 .Subscribe(OnCarCollision)
                 .AddTo(component);
 
-            MessageBroker.Default.Receive<MessageObstacleDespawn>()
-                .Select(m => new Tuple<MessageObstacleDespawn, ObstacleComponent>(m, component))
+            MessageBroker.Default.Receive<MessageDespawnTask>()
+                .Select(m => new Tuple<MessageDespawnTask, ObstacleComponent>(m, component))
                 .Where(tuple => tuple.Item1.Name.Equals(tuple.Item2.ParentName))
                 .Delay(TimeSpan.FromMilliseconds(500))
                 .Subscribe(tuple => Object.Destroy(tuple.Item2.gameObject))
@@ -37,13 +37,13 @@ namespace Systems.Interaction.Obstacles
         {
             _config = component;
 
-            Observable.Interval(TimeSpan.FromSeconds(10))
-                .Subscribe(l => MessageBroker.Default.Publish(new MessageSpawnOpstacle("test")));
+            //Observable.Interval(TimeSpan.FromSeconds(10))
+            //    .Subscribe(l => MessageBroker.Default.Publish(new MessageSpawnTask("test")));
         }
         public override void Register(ObstacleSpawnerComponent component)
         {
-            MessageBroker.Default.Receive<MessageSpawnOpstacle>()
-                .Select(message => new Tuple<MessageSpawnOpstacle, ObstacleSpawnerComponent>(message, component))
+            MessageBroker.Default.Receive<MessageSpawnTask>()
+                .Select(message => new Tuple<MessageSpawnTask, ObstacleSpawnerComponent>(message, component))
                 .Where(tuple => tuple.Item1.Name.Equals(tuple.Item2.Name))
                 .Subscribe(SpawnObstacleOnSelf)
                 .AddTo(component);
@@ -52,9 +52,9 @@ namespace Systems.Interaction.Obstacles
         {
             _car.Velocity = _car.Velocity * -0.4f;
 
-            MessageBroker.Default.Publish(new MessageObstacleDespawn(tuple.Item2.ParentName));
+            MessageBroker.Default.Publish(new MessageDespawnTask(tuple.Item2.ParentName));
         }
-        private void SpawnObstacleOnSelf(Tuple<MessageSpawnOpstacle, ObstacleSpawnerComponent> tuple)
+        private void SpawnObstacleOnSelf(Tuple<MessageSpawnTask, ObstacleSpawnerComponent> tuple)
         {
             var obstacle = Object.Instantiate(_config.OpstaclePrefab, tuple.Item2.transform);
             obstacle.GetComponent<ObstacleComponent>().ParentName = tuple.Item2.Name;
