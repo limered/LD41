@@ -25,6 +25,8 @@ namespace Systems.GameState.TaskGenerator
 
             GenerateWrongs(task);
 
+            task.PositionOfResult = GetResultPosition();
+
             return task;
         }
 

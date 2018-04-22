@@ -1,4 +1,5 @@
 ﻿using System;
+using Systems.GameState.States;
 
 namespace Systems.GameState
 {
@@ -11,5 +12,6 @@ namespace Systems.GameState
         public int Result;
         public int Wrong1;
         public int Wrong2;
+        public TrackPosition PositionOfResult;
     }
 }

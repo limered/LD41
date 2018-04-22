@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Systems.GameState.States;
+using UnityEngine;
 
 namespace Systems.GameState.TaskGenerator
 {
@@ -16,6 +17,11 @@ namespace Systems.GameState.TaskGenerator
             {
                 task.Wrong2 = task.Result + Random.Range(-10, 10);
             } while (task.Wrong2 == task.Result || task.Wrong1 == task.Wrong2);
+        }
+
+        protected static TrackPosition GetResultPosition()
+        {
+            return (TrackPosition) Random.Range(0, 3);
         }
     }
 }

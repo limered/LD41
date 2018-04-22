@@ -27,7 +27,7 @@ namespace Systems.GameState.States
 
             Debug.Log(_task.FirstNumber + _task.Operation + _task.SecondNumber + "=" + _task.Result);
 
-            MessageBroker.Default.Publish(new MessageSpawnTask(TaskName));
+            MessageBroker.Default.Publish(new MessageSpawnTask(TaskName, _task));
             _endMessage = MessageBroker.Default.Receive<MessageDespawnTask>()
                 .Where(task => task.Name.Equals(TaskName))
                 .Subscribe(OnBoosterHit);
