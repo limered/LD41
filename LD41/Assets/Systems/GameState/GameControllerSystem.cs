@@ -20,7 +20,11 @@ namespace Systems.GameState
 
             SetupStates();
 
-            _states[_currentStateP].Enter(this);
+            Observable.Start(() => 0).Delay(TimeSpan.FromSeconds(1))
+                .Subscribe(i =>
+                {
+                    _states[_currentStateP].Enter(this);
+                });
         }
 
         private void SetupStates()
@@ -38,16 +42,16 @@ namespace Systems.GameState
                 TaskGenerators = new ITaskGenerator[] { new AdditionAbstractTaskGenerator(10,100), new SubtractionAbstractTaskGenerator(10,100), },
             });
             //_states.Add(new WaitForFinishState());
-            _states.Add(new TaskState
-            {
-                TaskName = "one",
-                TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 5), new DivisionAbstractTaskGeneratorImpl(1, 5), },
-            });
-            _states.Add(new TaskState
-            {
-                TaskName = "two",
-                TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 10), new DivisionAbstractTaskGeneratorImpl(1,10), },
-            });
+            //_states.Add(new TaskState
+            //{
+            //    TaskName = "one",
+            //    TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 5), new DivisionAbstractTaskGeneratorImpl(1, 5), },
+            //});
+            //_states.Add(new TaskState
+            //{
+            //    TaskName = "two",
+            //    TaskGenerators = new ITaskGenerator[] { new MultiplyTaskGeneratorImpl(0, 10), new DivisionAbstractTaskGeneratorImpl(1,10), },
+            //});
         }
 
         public void NextState()
