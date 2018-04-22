@@ -23,6 +23,8 @@ namespace Systems.Camera
         {
             cameraComponent.transform.position = Vector3.Lerp(cameraComponent.transform.position, cameraComponent.Helper.transform.position, cameraComponent.PositionLerpFactor);
             cameraComponent.transform.up = Vector3.Lerp(cameraComponent.transform.up, cameraComponent.Car.ForwardVector, cameraComponent.RotationLerpFactor);
+
+            cameraComponent.transform.eulerAngles = new Vector3(0, 0, cameraComponent.transform.eulerAngles.z);
         }
     }
 }

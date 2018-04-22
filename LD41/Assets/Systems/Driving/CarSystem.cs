@@ -33,7 +33,7 @@ namespace Systems.Driving
         {
             var futureVelocity = carComponent.Velocity + carComponent.Acceleration * Time.fixedDeltaTime;
             var speed = carComponent.Velocity.magnitude;
-            carComponent.SteerAngle *= speed / _config.MaxSpeed;
+            carComponent.SteerAngle *= Mathf.Min(speed / _config.MaxSpeed, 1f);
             if (speed < _config.MaxSpeed)
             {
                 carComponent.Velocity = futureVelocity;
