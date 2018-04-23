@@ -8,6 +8,8 @@ namespace Systems.GameState.States
     {
         private IDisposable _disposable;
 
+        public Action ActionOnExit;
+
         public void Enter(GameControllerSystem context)
         {
             _disposable = MessageBroker.Default.Receive<MessageFinishLine>()
@@ -17,6 +19,10 @@ namespace Systems.GameState.States
 
         public void Exit()
         {
+            if (ActionOnExit != null)
+            {
+                ActionOnExit();
+            }
             _disposable.Dispose();
         }
     }

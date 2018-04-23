@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SystemBase;
 using Systems.GameState.States;
 using Systems.GameState.TaskGenerator;
+using Systems.GameState.Time;
 using UniRx;
 
 namespace Systems.GameState
@@ -20,17 +21,14 @@ namespace Systems.GameState
 
             SetupStates();
 
-            Observable.Start(() => 0).Delay(TimeSpan.FromSeconds(1))
-                .Subscribe(i =>
-                {
-                    _states[_currentStateP].Enter(this);
-                });
+            _states[_currentStateP].Enter(this);
         }
 
         private void SetupStates()
         {
             _states = new List<IGameState>();
             _states.Add(new SplashScreenState());
+            _states.Add(new WaitForFinishState{ActionOnExit = ()=>MessageBroker.Default.Publish(new MessageTimerStart())});
             _states.Add(new TaskState
             {
                 TaskName = "one",

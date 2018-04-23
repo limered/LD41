@@ -27,7 +27,6 @@ namespace Systems.GameState.States
 
         public void Exit()
         {
-            MessageBroker.Default.Publish(new MessageTimerStart());
             _waitForStartDisposable.Dispose();
         }
     }
