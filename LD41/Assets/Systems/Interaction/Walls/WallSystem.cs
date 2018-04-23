@@ -30,7 +30,7 @@ namespace Systems.Interaction.Walls
             _car.WallCrashSound.pitch = Random.Range(0.7f, 1.3f);
             _car.WallCrashSound.Play();
 
-            MessageBroker.Default.Publish(new MessageWallParticle{Position = center, Velocity = _car.Velocity});
+            MessageBroker.Default.Publish(new MessageWallParticle{Position = center, Forward = _car.ForwardVector});
         }
 
         public override void Register(CarComponent component)

@@ -5,6 +5,6 @@ namespace Systems.VFX.Messages
     public class MessageWallParticle
     {
         public Vector3 Position;
-        public Vector2 Velocity;
+        public Vector2 Forward;
     }
 }

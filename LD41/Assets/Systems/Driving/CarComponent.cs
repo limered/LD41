@@ -14,5 +14,7 @@ namespace Systems.Driving
 
         public AudioSource WallCrashSound;
         public AudioSource ObstacleCrashSound;
+
+        public GameObject ColliderObject;
     }
 }

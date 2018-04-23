@@ -537,6 +537,7 @@ MonoBehaviour:
   LateralVel: {x: 0, y: 0}
   WallCrashSound: {fileID: 82084596336206572}
   ObstacleCrashSound: {fileID: 82022749028767484}
+  ColliderObject: {fileID: 1203851994128048}
 --- !u!212 &212094903868164056
 SpriteRenderer:
   m_ObjectHideFlags: 1

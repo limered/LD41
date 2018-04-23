@@ -11,7 +11,7 @@ namespace Systems.VFX
 {
 
     [GameSystem(typeof(CarSystem))]
-    public class CollisionParticleSystem : GameSystem<CollisionParticleConfigComponen, WallPArticleComponent, ObstacleParticleComponent>
+    public class CollisionParticleSystem : GameSystem<CollisionParticleConfigComponen>
     {
         private CollisionParticleConfigComponen _config;
 
@@ -22,31 +22,24 @@ namespace Systems.VFX
             MessageBroker.Default.Receive<MessageWallParticle>()
                 .Subscribe(SpawnWallParticles)
                 .AddTo(IoC.Game);
+
+            MessageBroker.Default.Receive<MessageObstacleParticle>()
+                .Subscribe(SpawnObstacleParticles)
+                .AddTo(IoC.Game);
+        }
+
+        private void SpawnObstacleParticles(MessageObstacleParticle messageObstacleParticle)
+        {
+            var pos = new Vector3(messageObstacleParticle.Position.x, messageObstacleParticle.Position.y, -2);
+            GameObject.Instantiate(_config.ObstacleParticleSystemPrefab, pos,
+                Quaternion.AngleAxis(90, new Vector3(-messageObstacleParticle.Forward.y, messageObstacleParticle.Forward.x, 0)));
         }
 
         private void SpawnWallParticles(MessageWallParticle messageWallParticle)
         {
             var pos = new Vector3(messageWallParticle.Position.x, messageWallParticle.Position.y, -2);
             GameObject.Instantiate(_config.WallPArticleSystemPrefab, pos,
-                Quaternion.AngleAxis(-90, new Vector3(0, messageWallParticle.Velocity.x, messageWallParticle.Velocity.y)));
-        }
-
-        public override void Register(WallPArticleComponent component)
-        {
-            component.FixedUpdateAsObservable()
-                .Select(_ => component)
-                .Subscribe(UpdateParticles)
-                .AddTo(component);
-        }
-
-        private void UpdateParticles(WallPArticleComponent wallPArticleComponent)
-        {
-            
-        }
-
-        public override void Register(ObstacleParticleComponent component)
-        {
-            
+                Quaternion.AngleAxis(90, new Vector3(-messageWallParticle.Forward.y, messageWallParticle.Forward.x, 0)));
         }
     }
 

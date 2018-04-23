@@ -27,6 +27,12 @@ namespace Systems.Driving
             ApplyFriction(carComponent);
             Animate(carComponent);
             ApplyAnimationToModel(carComponent);
+            FixCollider(carComponent);
+        }
+
+        private void FixCollider(CarComponent carComponent)
+        {
+            carComponent.ColliderObject.transform.localPosition = Vector3.zero;
         }
 
         private void Animate(CarComponent carComponent)

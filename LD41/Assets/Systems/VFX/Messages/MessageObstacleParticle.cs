@@ -5,6 +5,6 @@ namespace Systems.VFX.Messages
     public class MessageObstacleParticle
     {
         public Vector3 Position;
-        public Vector2 Valosity;
+        public Vector2 Forward;
     }
 }

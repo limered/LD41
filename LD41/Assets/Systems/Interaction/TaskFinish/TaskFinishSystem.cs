@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using SystemBase;
 using Systems.Driving;
+using Systems.VFX.Messages;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -73,6 +75,7 @@ namespace Systems.Interaction.TaskFinish
             _car.ObstacleCrashSound.Play();
 
             MessageBroker.Default.Publish(new MessageDespawnTask(tuple.Item2.Name));
+            MessageBroker.Default.Publish(new MessageObstacleParticle{Position = tuple.Item1.contacts.First().point, Forward = _car.ForwardVector});
         }
         private void SpawnObject(Tuple<MessageSpawnTask, TaskFinishSpawnerComponent> tuple)
         {
