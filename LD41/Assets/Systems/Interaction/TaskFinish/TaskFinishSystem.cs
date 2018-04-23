@@ -5,6 +5,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Systems.Interaction.TaskFinish
 {
@@ -67,6 +68,9 @@ namespace Systems.Interaction.TaskFinish
         private void OnObstacleCollision(Tuple<Collision2D, ObstacleComponent> tuple)
         {
             _car.Velocity = _car.Velocity * -_config.ObstacleStrength;
+
+            _car.ObstacleCrashSound.pitch = Random.Range(0.7f, 1.3f);
+            _car.ObstacleCrashSound.Play();
 
             MessageBroker.Default.Publish(new MessageDespawnTask(tuple.Item2.Name));
         }

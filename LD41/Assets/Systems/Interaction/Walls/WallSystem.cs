@@ -25,6 +25,9 @@ namespace Systems.Interaction.Walls
             center = new Vector2(center.x/collision2D.contacts.Length, center.y / collision2D.contacts.Length);
             var dir = _car.transform.position.DirectionTo(center);
             _car.Velocity = new Vector2(-dir.x * 25, -dir.y * 25);
+
+            _car.WallCrashSound.pitch = Random.Range(0.7f, 1.3f);
+            _car.WallCrashSound.Play();
         }
 
         public override void Register(CarComponent component)

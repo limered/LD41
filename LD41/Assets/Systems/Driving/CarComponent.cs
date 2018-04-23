@@ -11,5 +11,8 @@ namespace Systems.Driving
         public float SteerAngle = 0;
         public Vector2 ForwardVector = Vector2.up;
         public Vector2 LateralVel;
+
+        public AudioSource WallCrashSound;
+        public AudioSource ObstacleCrashSound;
     }
 }
