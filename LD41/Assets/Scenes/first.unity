@@ -907,6 +907,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: ef2b0adedec772c408c17ba8b8fedf61, type: 2}
+--- !u!114 &1858433611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1858433608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f8f46b32474dd5a8740309c3932eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallPArticleSystemPrefab: {fileID: 1281365004418872, guid: 323dc453f9dc4d14fa1f1fd9408ccfe7,
+    type: 2}
+  ObstacleParticleSystemPrefab: {fileID: 0}
 --- !u!1001 &2128197522
 Prefab:
   m_ObjectHideFlags: 0

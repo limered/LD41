@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using SystemBase;
 using Systems.Driving;
+using Systems.VFX.Messages;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -28,6 +29,8 @@ namespace Systems.Interaction.Walls
 
             _car.WallCrashSound.pitch = Random.Range(0.7f, 1.3f);
             _car.WallCrashSound.Play();
+
+            MessageBroker.Default.Publish(new MessageWallParticle{Position = center, Velocity = _car.Velocity});
         }
 
         public override void Register(CarComponent component)

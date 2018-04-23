@@ -26,7 +26,9 @@ namespace Systems.VFX
 
         private void SpawnWallParticles(MessageWallParticle messageWallParticle)
         {
-            
+            var pos = new Vector3(messageWallParticle.Position.x, messageWallParticle.Position.y, -2);
+            GameObject.Instantiate(_config.WallPArticleSystemPrefab, pos,
+                Quaternion.AngleAxis(-90, new Vector3(0, messageWallParticle.Velocity.x, messageWallParticle.Velocity.y)));
         }
 
         public override void Register(WallPArticleComponent component)
@@ -54,11 +56,5 @@ namespace Systems.VFX
 
     public class WallPArticleComponent : GameComponent
     {
-    }
-
-    public class CollisionParticleConfigComponen : GameComponent
-    {
-        public ParticleSystem WallPArticleSystemPrefab;
-        public ParticleSystem ObstacleParticleSystemPrefab;
     }
 }
