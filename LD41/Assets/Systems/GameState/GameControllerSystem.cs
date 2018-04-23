@@ -34,8 +34,7 @@ namespace Systems.GameState
                 TaskName = "one",
                 TaskGenerators = new ITaskGenerator[]
                 {
-                    new AdditionAbstractTaskGenerator(0,10),
-                    new SubtractionAbstractTaskGenerator(1,10),
+                    new MultiplyTaskGeneratorImpl(1,1),
                 }
             });
             _states.Add(new TaskState
@@ -43,8 +42,8 @@ namespace Systems.GameState
                 TaskName = "two",
                 TaskGenerators = new ITaskGenerator[]
                 {
-                    new AdditionAbstractTaskGenerator(10,100),
-                    new SubtractionAbstractTaskGenerator(10,100),
+                    new AdditionAbstractTaskGenerator(10, 50),
+                    new SubtractionAbstractTaskGenerator(10, 50),
                 },
             });
             _states.Add(new WaitForFinishState());
@@ -54,7 +53,7 @@ namespace Systems.GameState
                 TaskGenerators = new ITaskGenerator[]
                 {
                     new MultiplyTaskGeneratorImpl(0, 5),
-                    new DivisionAbstractTaskGeneratorImpl(1, 5),
+                    new DivisionAbstractTaskGeneratorImpl(2, 15),
                 },
             });
             _states.Add(new TaskState
@@ -62,8 +61,8 @@ namespace Systems.GameState
                 TaskName = "two",
                 TaskGenerators = new ITaskGenerator[]
                 {
-                    new MultiplyTaskGeneratorImpl(0, 10),
-                    new DivisionAbstractTaskGeneratorImpl(1, 10),
+                    new MultiplyTaskGeneratorImpl(0, 20),
+                    new DivisionAbstractTaskGeneratorImpl(3, 10),
                 },
             });
             _states.Add(new WaitForFinishState());
@@ -88,8 +87,7 @@ namespace Systems.GameState
                     new SubtractionAbstractTaskGenerator(50, 100),
                 },
             });
-            _states.Add(new WaitForFinishState());
-
+            _states.Add(new WaitForFinishState{ActionOnExit = ()=>MessageBroker.Default.Publish(new MessageTimerStop())});
         }
 
         public void NextState()
