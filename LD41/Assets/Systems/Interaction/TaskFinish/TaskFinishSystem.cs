@@ -35,7 +35,7 @@ namespace Systems.Interaction.TaskFinish
             MessageBroker.Default.Receive<MessageDespawnTask>()
                 .Select(m => new Tuple<MessageDespawnTask, ObstacleComponent>(m, component))
                 .Where(tuple => tuple.Item1.Name.Equals(tuple.Item2.Name))
-                .Delay(TimeSpan.FromMilliseconds(500))
+                .Delay(TimeSpan.FromMilliseconds(5000))
                 .Subscribe(tuple => Object.Destroy(tuple.Item2.gameObject))
                 .AddTo(component);
         }
@@ -49,7 +49,7 @@ namespace Systems.Interaction.TaskFinish
             MessageBroker.Default.Receive<MessageDespawnTask>()
                 .Select(m => new Tuple<MessageDespawnTask, BoostComponent>(m, component))
                 .Where(tuple => tuple.Item1.Name.Equals(tuple.Item2.Name))
-                .Delay(TimeSpan.FromMilliseconds(500))
+                .Delay(TimeSpan.FromMilliseconds(5000))
                 .Subscribe(tuple => Object.Destroy(tuple.Item2.gameObject))
                 .AddTo(component);
         }
@@ -76,6 +76,8 @@ namespace Systems.Interaction.TaskFinish
 
             MessageBroker.Default.Publish(new MessageDespawnTask(tuple.Item2.Name));
             MessageBroker.Default.Publish(new MessageObstacleParticle{Position = tuple.Item1.contacts.First().point, Forward = _car.ForwardVector});
+
+            GameObject.Destroy(tuple.Item2.gameObject);
         }
         private void SpawnObject(Tuple<MessageSpawnTask, TaskFinishSpawnerComponent> tuple)
         {
